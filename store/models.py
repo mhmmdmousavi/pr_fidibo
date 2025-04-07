@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import User
-from books.models import Books
+from books.models import Book
 
 
 class Cart (models.Model):
@@ -12,7 +12,7 @@ class Cart (models.Model):
     
 class Cart_Item(models.Model):
     cart = models.ForeignKey(Cart, on_delete= models.CASCADE, related_name= 'items')
-    books = models.ForeignKey(Books, on_delete=models.CASCADE)
+    books = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.PositiveBigIntegerField(default= 1)
 
     def get_total_price (self):
@@ -28,7 +28,7 @@ class Order(models.Model):
     
 class Order_Item(models.Model):
     order = models.ForeignKey(Order, on_delete= models.CASCADE, related_name= 'items')
-    book = models.ForeignKey(Books, on_delete= models.CASCADE)
+    book = models.ForeignKey(Book, on_delete= models.CASCADE)
     quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
 

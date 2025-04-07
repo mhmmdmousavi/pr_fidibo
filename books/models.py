@@ -14,7 +14,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class Books(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=64)
     author = models.ManyToManyField(Author, related_name= 'Books')
     categories = models.ManyToManyField(Category, related_name= 'books')
